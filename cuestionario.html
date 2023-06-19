@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="footer.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="style.css">
+    <link href="https://fonts.cdnfonts.com/css/zig" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  <title>cuestionario</title>
+</head>
+<body>
+      <div style="margin: 24px;">
+
+        <nav class="navbar navbar-light" style="background-color: #c72424;">
+
+            <div class="container">
+              <ul class="nav navbar-nav">
+                    <li>
+                        <li>
+                        <a href="index.html">inicio</a>
+                    </li>
+                    <li>
+                        <a href="menu.html">menu</a>
+                    </li>
+                    <li>
+                        <a href="pedido.html">pedido</a>
+                    </li>
+                    <li>
+                        <a href="contacto.html">contacto</a>
+                    </li>
+                    <li>
+                        <a href="calculadorafisica.html">caculadora Fisica</a>
+                    </li>
+                    <li>
+<a href="apimovies.html">movies</a>
+                    </li>
+                    <li class="active">
+                      <a href="cuestionario.html">cuestionario</a>
+                    </li>
+                </ul>
+       
+            </div>
+         </nav>
+    </div
+>
+
+
+<div class="container">
+  <div class="quiz-container" id="quiz">
+    <div class="quiz-header">
+      <div class="image-container">
+        <img src="imagen.jpg" alt="imagen" id="question-image" style="width: 250px; height:auto;">
+      </div>
+      <h2 id="question">Question text </h2>
+      <ul>
+        <li>
+          <input type="radio" name="answer" id="a" class="answer">
+          <label for="a" id="a_text">Question</label>
+        </li>
+                <li>
+          <input type="radio" name="answer" id="b" class="answer">
+          <label for="b" id="b_text">Question</label>
+        </li>
+                <li>
+          <input type="radio" name="answer" id="c" class="answer">
+          <label for="c" id="c_text">Question</label>
+        </li>
+                <li>
+          <input type="radio" name="answer" id="d" class="answer">
+          <label for="d" id="d_text">Question</label>
+        </li>
+      </ul>
+    </div>
+    <button id="submit">Submit</button>
+  </div>
+</div>
+<style>
+  body{
+    align-items: center;
+    justify-content: center;
+    overflow: 0;
+    margin: 0;
+  }
+  .quiz-container{
+background-color :rgb(83, 83, 83);
+background-image: linear-gradient(315deg,#555555 0%, #ff0000 100%);
+border-radius:10px;
+box-shadow: 0 10px 20px 2px rgb(0, 0, 0);
+width:"400px";
+overflow: hidden;
+  }
+  .quiz-header{
+    padding: 15px;
+  }
+  h2{
+    padding:10px;
+    text-align: center;
+    margin: 0;
+  }
+  ul{
+    list-style: none;
+    padding: 0;
+  }
+  ul li{
+    font-size: 18px;
+    margin: 10px 0;
+  }
+ul li label{
+  cursor: pointer;
+}
+button{
+  background-color: #414141;
+  color: rgb(255, 0, 0);
+  border: none;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+button:hover{
+  background-color: rgb(86, 86, 86);
+}
+button:focus{
+  outline: none;
+  background-color: rgb(85, 85, 85);
+}
+</style>
+<script>
+  const quizData = [
+    {
+      question: "1-¿quien fue el fundador de CT?",
+      image:"https://i.scdn.co/image/ab67616d0000b273cda237a502031f4caa2c1bde",
+      a: "Natanael Cano",
+      b:"Junior H",
+      c:"Gabito Ballesteros",
+      d:"Peso Pluma",
+      correct:"a",
+    },
+    {
+      question: "2-¿quienes empezaron a cantar CT juntos?",
+      image:"data:image/png;base64,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",
+      a: "Peso Pluma y Gabito Ballesteros",
+      b:"Natanael Cano y Junior H",
+      c:"Fuerza Regida y Grupo Firme",
+      d:"Luis R y Grupo Frontera",
+      correct:"b",
+    },
+    {
+      question: "3-¿que cantante murio en Reynosa 2006?",
+      image:"https://i.pinimg.com/564x/51/87/65/5187658556626563d441886c40f305db.jpg",
+      a: "Sergio Vega",
+      b:"Tito Torbellino",
+      c:"Valentin Elizalde",
+      d:"Chalino Sanchez",
+      correct:"c",
+    },
+    {
+      question: "4-¿en que año se fundaron los CT?",
+      image:"https://i.scdn.co/image/ab67706c0000da8461db87652af5edbb8e315247",
+      a: "2015",
+      b:"2018",
+      c:"2020",
+      d:"2022",
+      correct:"d",
+    },
+    {
+      question: " 5-¿que cantante mexicano es mas famoso actualmente?",
+      image:"https://valencaagora.com/wp-content/uploads/2016/09/fama-640x400.jpg",
+      a: "Peso Pluma",
+      b:"Natanael Cano",
+      c:"Junior H",
+      d:"Fuerza Regida",
+      correct:"a",
+    },
+
+    ];
+    const quiz = document.getElementById('quiz');
+    const answerEls=document.querySelectorAll('.answer');
+    const questionEl =document.getElementById('question');
+    //dependiendo del número de repuestas esto puede incrementar
+    const a_text=document.getElementById('a_text');
+    const b_text=document.getElementById('b_text');
+    const c_text=document.getElementById('c_text');
+    const d_text=document.getElementById('d_text');
+const submitBtn=document.getElementById('submit');
+let currentQuiz=0; //esta variable nos va a servir para realizar el seguimiento de ma pregunta 
+let score= 0; // esta variable realiza el siguiente del puntaje del usuario
+
+loadQuiz(); //va a cargar la primera pregunta del cuestionario
+function loadQuiz(){
+  deselectAnswers();
+  const currentQuizData= quizData[currentQuiz];// obtuene los datos de la pregunta actual
+  
+  questionEl.innerText = currentQuizData.question; //muestra la pregunta actual en el elemento html correspondiente 
+  
+  a_text.innerText = currentQuizData.a; //muestra la opción de la respuesta A en el elemento html correspondiente 
+  
+  b_text.innerText = currentQuizData.b; //muestra la opción de la respuesta B en el elemento html correspondiente 
+  
+  c_text.innerText = currentQuizData.c; //muestra la opción de la respuesta C en el elemento html correspondiente
+  
+ d_text.innerText = currentQuizData.d; //muestra la opción de la respuesta D en el elemento html correspondiente 
+ const questionImage = document.getElementById("question-image");
+ questionImage.src=currentQuizData.image;
+}
+function deselectAnswers(){
+  answerEls.forEach(answerEl => answerEl.checked= false); //desenmarca todas las casillas de verificación de respuesta.
+}
+function getSelected(){
+  let answer;
+  answerEls.forEach(answerEl => {
+    if(answerEl.checked){
+      answer = answerEl.id; //en esta parte obtienes ms opcion de la respuesta selecgionafs por el usuario 
+    }
+  });
+  return answer; //devuelve la opción de la respuesta seccionsda.
+}
+submitBtn.addEventListener('click',() =>{
+  const answer = getSelected(); //obtiene la opcion del a respuesta selecionada por el usuario 
+  if (answer){
+  if(answer === quizData[currentQuiz].correct){
+    score++; //incrementara el puntaje de las respuestas correctas 
+  }
+  currentQuiz++; //incrementa
+  if(currentQuiz < quizData.length){
+    loadQuiz();
+  } else{
+    quiz.innerHTML=`
+    <h2>Constestaste ${score}/${quizData.length} de preguntas correctamente </h2>
+    
+    <button onclick="location.reload()">Reload</button>
+    `
+  }
+  }
+})
+</script>
+
+    <footer>
+ <style>
+               footer{
+
+                background-color: rgb(110, 0, 0);
+
+                padding: 40px;
+            }
+            .container{
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+            .footer-content{
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .footer-section{
+                width: 100%;
+                padding: 20px;
+                box-sizing: border-box;
+            }
+            .about{
+                text-align: center;
+            }
+            .about h2{
+                margin-bottom: 20px;
+            }
+            .about p{
+                font-size: 18px;
+                line-height: 1.5;
+                margin-bottom: 20px;
+            }
+            .contact-links{
+                display: flex;
+                justify-content: center;
+            }
+            .contact-links a{
+                display: inline-block;
+                color: black;
+                font-size: 24px;
+                margin: 0 10px;
+                transition: all 0.3s ease;
+            }
+            .contact-links a:hover{
+                transform: translateY(-15px);
+            }
+ </style>
+
+        <div class="container">
+            <div class="footer-content">
+                <div class="fotter-section about">
+        <h2>Contactame</h2>
+        <p>si estas interesado en contactarme,puedes hacerlo a atraves de cualquiera de las siguientes 
+            redes Sociales:</p>
+            <div class="contact-links">
+            <a href="http://www.facebook.com/miperfil" 
+            target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="http://www.instagram.com/miperfil" 
+            target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="http://www.twitter.com/miperfil" 
+            target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="http://www.discord.com/miperfil" 
+            target="_blank"><i class="fab fa-discord"></i></a>
+            <a href="http://www.pinterest.com/miperfil" 
+            target="_blank"><i class="fab fa-pinterest"></i></a>
+            <a href="http://www.linkedin.com/miperfil" 
+            target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+            </div>
+           </div>
+         </div>
+               
+   
+
+    <script>
+        //este siguiente codigo es para que los enlaces se abran en una nueva pestaña
+        const redessociales = document.querySelectorAll('.contact-links');
+        redessociales.forEach(link =>{
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                window.open(link.href, '_blank');
+            });
+        });
+
+    </script>
+ </footer>
+ 
+</body>
+</html>
